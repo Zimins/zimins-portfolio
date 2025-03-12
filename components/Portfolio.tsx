@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -49,13 +49,25 @@ const projects = [
   }
 ];
 
+const categories = ['전체', '웹 개발', '앱 개발', 'UI/UX 디자인', '그래픽 디자인'];
+
 export default function Portfolio() {
+  const [activeCategory, setActiveCategory] = useState('전체');
+  
+  const filteredProjects = activeCategory === '전체' 
+    ? projects 
+    : projects.filter(project => project.category === activeCategory);
+
   return (
-    <section className="py-20 px-4 md:px-8 lg:px-16 bg-gray-50 dark:bg-gray-900">
+    <section className="py-24 px-4 md:px-8 lg:px-16 bg-white dark:bg-gray-800">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            최근 <span className="text-blue-600 dark:text-blue-400">프로젝트</span>
+          <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium mb-4">
+            <span className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mr-2"></span>
+            포트폴리오
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            최근 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">프로젝트</span> 둘러보기
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             다양한 산업 분야에서 진행한 프로젝트들을 소개합니다.
@@ -63,33 +75,51 @@ export default function Portfolio() {
           </p>
         </div>
         
+        {/* 카테고리 필터 */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeCategory === category
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <div 
               key={project.id} 
-              className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+              className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group"
             >
-              <div className="relative h-60 w-full">
+              <div className="relative h-64 w-full overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="p-6">
-                <span className="inline-block px-3 py-1 text-xs font-medium bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full mb-3">
+              <div className="p-8">
+                <span className="inline-block px-4 py-1.5 text-xs font-medium bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300 rounded-full mb-4">
                   {project.category}
                 </span>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
                   {project.description}
                 </p>
                 <Link 
                   href={`/portfolio/${project.id}`}
-                  className="text-blue-600 dark:text-blue-400 font-medium hover:underline inline-flex items-center"
+                  className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"
                 >
                   자세히 보기
                   <svg 
@@ -102,7 +132,7 @@ export default function Portfolio() {
                     strokeWidth="2" 
                     strokeLinecap="round" 
                     strokeLinejoin="round" 
-                    className="ml-1 w-4 h-4"
+                    className="ml-2 w-5 h-5"
                   >
                     <path d="M5 12h14"></path>
                     <path d="m12 5 7 7-7 7"></path>
@@ -113,10 +143,10 @@ export default function Portfolio() {
           ))}
         </div>
         
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <Link 
             href="/portfolio"
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 inline-block"
+            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-300 inline-block shadow-lg hover:shadow-xl"
           >
             모든 프로젝트 보기
           </Link>

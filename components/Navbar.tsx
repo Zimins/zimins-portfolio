@@ -27,34 +27,37 @@ export default function Navbar() {
     { href: '/about', label: '회사 소개' },
     { href: '/services', label: '서비스' },
     { href: '/portfolio', label: '포트폴리오' },
-    { href: '/contact', label: '문의하기' },
+    { href: '/blog', label: '블로그' },
   ];
 
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white dark:bg-gray-900 shadow-md py-3' 
+          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-3' 
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16">
         <div className="flex justify-between items-center">
           {/* 로고 */}
-          <Link href="/" className="text-2xl font-bold text-gray-900 dark:text-white">
-            회사명
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="relative w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+              C
+            </div>
+            <span className="text-xl font-bold text-gray-900 dark:text-white">Company</span>
           </Link>
 
           {/* 데스크탑 메뉴 */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors duration-300 ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   pathname === link.href
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'
+                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30'
+                    : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-blue-400 dark:hover:bg-gray-800'
                 }`}
               >
                 {link.label}
@@ -62,7 +65,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300"
+              className="ml-4 px-5 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
             >
               문의하기
             </Link>
@@ -112,16 +115,16 @@ export default function Navbar() {
 
         {/* 모바일 메뉴 */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 py-4 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-            <div className="flex flex-col space-y-4 px-4">
+          <div className="md:hidden mt-4 py-4 bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-100 dark:border-gray-800">
+            <div className="flex flex-col space-y-2 px-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors duration-300 ${
+                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
                     pathname === link.href
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30'
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-blue-400 dark:hover:bg-gray-800'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -130,7 +133,7 @@ export default function Navbar() {
               ))}
               <Link
                 href="/contact"
-                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 text-center"
+                className="mt-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-300 text-center shadow-md"
                 onClick={() => setIsMenuOpen(false)}
               >
                 문의하기
