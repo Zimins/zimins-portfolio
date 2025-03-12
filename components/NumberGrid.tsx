@@ -171,24 +171,21 @@ export default function NumberGrid() {
                 return (
                   <div 
                     key={number} 
-                    className="bg-transparent h-full perspective-1000"
+                    className="relative h-full cursor-pointer [perspective:1000px]"
+                    onClick={() => flipCard(number)}
                   >
                     <div 
-                      className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${flippedCards[number] ? 'rotate-y-180' : ''}`}
+                      className={`w-full h-full transition-all duration-500 ${
+                        flippedCards[number] ? '[transform:rotateY(180deg)]' : ''
+                      } [transform-style:preserve-3d]`}
                     >
                       {/* 카드 앞면 */}
-                      <div 
-                        className="absolute w-full h-full backface-hidden bg-white dark:bg-gray-800 flex items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10"
-                        onClick={() => flipCard(number)}
-                      >
+                      <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl [backface-visibility:hidden]">
                         <span className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200">{number}</span>
                       </div>
                       
                       {/* 카드 뒷면 */}
-                      <div 
-                        className="absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10"
-                        onClick={() => flipCard(number)}
-                      >
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl [transform:rotateY(180deg)] [backface-visibility:hidden]">
                         <span className="text-3xl md:text-4xl font-bold text-white">Hello!</span>
                       </div>
                     </div>
