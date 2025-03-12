@@ -7,49 +7,49 @@ import Link from 'next/link';
 const projects = [
   {
     id: 1,
-    title: '기업 웹사이트 리디자인',
+    title: '개인 블로그 웹사이트',
     category: '웹 개발',
     image: 'https://picsum.photos/id/26/800/600',
-    description: '현대적인 디자인과 사용자 경험을 개선한 기업 웹사이트 리디자인 프로젝트입니다.'
+    description: 'Next.js와 Tailwind CSS를 활용한 개인 블로그 웹사이트입니다. 마크다운 기반의 콘텐츠 관리 시스템을 구현했습니다.'
   },
   {
     id: 2,
-    title: '모바일 쇼핑 앱',
+    title: '쇼핑몰 모바일 앱',
     category: '앱 개발',
     image: 'https://picsum.photos/id/3/800/600',
-    description: 'iOS 및 Android 플랫폼을 위한 직관적인 사용자 인터페이스를 갖춘 쇼핑 애플리케이션입니다.'
+    description: 'React Native를 활용한 쇼핑몰 모바일 앱입니다. 상품 검색, 장바구니, 결제 기능을 구현했습니다.'
   },
   {
     id: 3,
     title: '대시보드 UI 디자인',
     category: 'UI/UX 디자인',
     image: 'https://picsum.photos/id/60/800/600',
-    description: '데이터 시각화와 사용자 경험을 중심으로 한 관리자 대시보드 디자인 프로젝트입니다.'
+    description: 'Figma를 활용한 관리자 대시보드 UI 디자인입니다. 데이터 시각화와 사용자 경험을 중심으로 디자인했습니다.'
   },
   {
     id: 4,
     title: '온라인 교육 플랫폼',
     category: '웹 개발',
     image: 'https://picsum.photos/id/20/800/600',
-    description: '사용자 맞춤형 학습 경험을 제공하는 반응형 온라인 교육 플랫폼입니다.'
+    description: 'React와 Firebase를 활용한 온라인 교육 플랫폼입니다. 강의 시청, 퀴즈, 진도 관리 기능을 구현했습니다.'
   },
   {
     id: 5,
     title: '헬스케어 모니터링 앱',
     category: '앱 개발',
     image: 'https://picsum.photos/id/96/800/600',
-    description: '사용자의 건강 데이터를 추적하고 분석하는 모바일 헬스케어 애플리케이션입니다.'
+    description: 'Flutter를 활용한 헬스케어 모니터링 앱입니다. 건강 데이터 추적 및 분석 기능을 구현했습니다.'
   },
   {
     id: 6,
-    title: '브랜드 아이덴티티 디자인',
-    category: '그래픽 디자인',
+    title: '포트폴리오 웹사이트',
+    category: '웹 개발',
     image: 'https://picsum.photos/id/24/800/600',
-    description: '로고, 색상 팔레트, 타이포그래피를 포함한 종합적인 브랜드 아이덴티티 디자인 프로젝트입니다.'
+    description: 'Next.js와 Tailwind CSS를 활용한 개인 포트폴리오 웹사이트입니다. 반응형 디자인과 다크 모드를 지원합니다.'
   }
 ];
 
-const categories = ['전체', '웹 개발', '앱 개발', 'UI/UX 디자인', '그래픽 디자인'];
+const categories = ['전체', '웹 개발', '앱 개발', 'UI/UX 디자인'];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('전체');
@@ -70,8 +70,8 @@ export default function Portfolio() {
             최근 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">프로젝트</span> 둘러보기
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            다양한 산업 분야에서 진행한 프로젝트들을 소개합니다.
-            각 프로젝트는 고객의 요구사항을 충족시키기 위한 맞춤형 솔루션입니다.
+            다양한 웹 개발 및 앱 개발 프로젝트를 진행했습니다.
+            각 프로젝트는 사용자 경험과 기능성을 모두 고려하여 개발되었습니다.
           </p>
         </div>
         
@@ -118,7 +118,7 @@ export default function Portfolio() {
                   {project.description}
                 </p>
                 <Link 
-                  href={`/portfolio/${project.id}`}
+                  href={`/projects/${project.id}`}
                   className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"
                 >
                   자세히 보기
@@ -145,7 +145,7 @@ export default function Portfolio() {
         
         <div className="text-center mt-16">
           <Link 
-            href="/portfolio"
+            href="/projects"
             className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-300 inline-block shadow-lg hover:shadow-xl"
           >
             모든 프로젝트 보기

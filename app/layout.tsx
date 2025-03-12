@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const geistSans = Geist({
@@ -15,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "회사명 - 디지털 솔루션 제공업체",
-  description: "최신 웹 기술을 활용하여 사용자 중심의 디지털 솔루션을 제공합니다.",
+  title: "지민의 포트폴리오",
+  description: "개인 포트폴리오 웹사이트입니다.",
 };
 
 export default function RootLayout({
@@ -29,7 +28,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
         {children}
         <Footer />
       </body>

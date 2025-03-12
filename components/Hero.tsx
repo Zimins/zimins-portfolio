@@ -19,21 +19,21 @@ export default function Hero() {
         <div className="flex flex-col space-y-8">
           <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
             <span className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mr-2"></span>
-            디지털 솔루션 전문 기업
+            프론트엔드 개발자
           </div>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">혁신적인</span> 디지털 경험을 창조합니다
+            안녕하세요, <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">지민</span>입니다
           </h1>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-xl">
-            최신 웹 기술을 활용하여 사용자 중심의 디지털 솔루션을 제공합니다. 
-            아이디어를 현실로 만들어 드립니다.
+            사용자 경험을 중요시하는 프론트엔드 개발자입니다. 
+            최신 웹 기술을 활용하여 아름답고 기능적인 웹사이트를 만듭니다.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 pt-4">
             <Link 
               href="/contact" 
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-xl transition-all duration-300 text-center shadow-lg hover:shadow-xl"
             >
-              문의하기
+              연락하기
             </Link>
             <Link 
               href="/portfolio" 
@@ -43,19 +43,19 @@ export default function Hero() {
             </Link>
           </div>
           
-          {/* 신뢰 지표 */}
-          <div className="flex flex-wrap gap-8 pt-8 items-center">
-            <div className="flex items-center">
-              <span className="text-3xl font-bold text-gray-900 dark:text-white mr-2">150+</span>
-              <span className="text-gray-600 dark:text-gray-400">완료 프로젝트</span>
+          {/* 기술 스택 */}
+          <div className="flex flex-wrap gap-4 pt-8">
+            <div className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+              <span className="text-gray-800 dark:text-gray-200 font-medium">React</span>
             </div>
-            <div className="flex items-center">
-              <span className="text-3xl font-bold text-gray-900 dark:text-white mr-2">98%</span>
-              <span className="text-gray-600 dark:text-gray-400">고객 만족도</span>
+            <div className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+              <span className="text-gray-800 dark:text-gray-200 font-medium">Next.js</span>
             </div>
-            <div className="flex items-center">
-              <span className="text-3xl font-bold text-gray-900 dark:text-white mr-2">10+</span>
-              <span className="text-gray-600 dark:text-gray-400">수상 경력</span>
+            <div className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+              <span className="text-gray-800 dark:text-gray-200 font-medium">TypeScript</span>
+            </div>
+            <div className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+              <span className="text-gray-800 dark:text-gray-200 font-medium">Tailwind CSS</span>
             </div>
           </div>
         </div>
@@ -65,8 +65,8 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl transform rotate-3 opacity-20 blur-xl"></div>
           <div className="relative h-full w-full rounded-3xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
             <Image
-              src="https://picsum.photos/id/180/1200/800"
-              alt="디지털 경험 이미지"
+              src="https://picsum.photos/id/1/1200/800"
+              alt="프로필 이미지"
               fill
               className="object-cover"
               priority
@@ -82,8 +82,8 @@ export default function Hero() {
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-900 dark:text-white">고객 만족</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">최우선 가치</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">3년 경력</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">프론트엔드 개발</p>
               </div>
             </div>
           </div>
@@ -96,8 +96,8 @@ export default function Hero() {
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-900 dark:text-white">빠른 개발</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">효율적인 프로세스</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-white">20+ 프로젝트</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">완료</p>
               </div>
             </div>
           </div>
