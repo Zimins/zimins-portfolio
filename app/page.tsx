@@ -1,13 +1,11 @@
-import Hero from '@/components/Hero';
-import Services from '@/components/Services';
+import NumberGrid from '@/components/NumberGrid';
 import Portfolio from '@/components/Portfolio';
 import Contact from '@/components/Contact';
 
 export default function Home() {
   return (
     <main>
-      <Hero />
-      <Services />
+      <NumberGrid />
       <Portfolio />
       <Contact />
     </main>
