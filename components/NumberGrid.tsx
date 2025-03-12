@@ -37,10 +37,19 @@ export default function NumberGrid() {
   const [nextId, setNextId] = useState(1);
   const [cardWidth, setCardWidth] = useState(0);
   const [chipWidths, setChipWidths] = useState<{[key: number]: number}>({});
+  const [flippedCards, setFlippedCards] = useState<{[key: number]: boolean}>({});
   const cardRef = useRef<HTMLDivElement>(null);
   const chipRefsMap = useRef<{[key: number]: HTMLDivElement | null}>({});
   const idCounterRef = useRef(1); // ID 카운터를 useRef로 관리하여 리렌더링 시에도 유지
   const initializedRef = useRef(false);
+  
+  // 카드 뒤집기 함수
+  const flipCard = (cardNumber: number) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [cardNumber]: !prev[cardNumber]
+    }));
+  };
   
   // 랜덤 칩 선택 함수
   const getRandomChip = () => {
@@ -158,6 +167,29 @@ export default function NumberGrid() {
           <div className="grid grid-cols-5 gap-1.5 md:gap-2" style={{ gridTemplateColumns: '1fr 1fr 1.5fr 1fr 1fr', gridTemplateRows: 'minmax(180px, 1fr) minmax(180px, 1fr) minmax(180px, 1fr) minmax(180px, 1fr)' }}>
             {/* 1-3번 카드 */}
             {Array.from({ length: 2 }, (_, i) => i + 1).map((number) => {
+              if (number === 1) {
+                return (
+                  <div 
+                    key={number} 
+                    className="bg-transparent h-full perspective-1000"
+                    onClick={() => flipCard(number)}
+                  >
+                    <div 
+                      className={`relative w-full h-full transition-transform duration-700 transform-style-3d ${flippedCards[number] ? 'rotate-y-180' : ''}`}
+                    >
+                      {/* 카드 앞면 */}
+                      <div className="absolute w-full h-full backface-hidden bg-white dark:bg-gray-800 flex items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10">
+                        <span className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200">{number}</span>
+                      </div>
+                      
+                      {/* 카드 뒷면 */}
+                      <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10">
+                        <span className="text-3xl md:text-4xl font-bold text-white">Hello!</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <div 
                   key={number} 
