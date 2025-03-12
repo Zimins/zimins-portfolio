@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 // 칩 데이터 타입 정의
 type TechChip = {
@@ -32,9 +32,19 @@ const techChips: TechChip[] = [
   { name: "typescript", color: "text-blue-500 dark:text-blue-300", bgColor: "bg-blue-400/10", borderColor: "border-blue-400/30" },
 ];
 
+// 랜덤 칩 선택 함수
+const getRandomChip = () => {
+  const randomIndex = Math.floor(Math.random() * techChips.length);
+  return techChips[randomIndex];
+};
+
+// 랜덤 수직 위치 생성 함수 (20%~80%)
+const getRandomVerticalPosition = () => {
+  return 20 + Math.random() * 60;
+};
+
 export default function NumberGrid() {
   const [chipInstances, setChipInstances] = useState<ChipInstance[]>([]);
-  const [nextId, setNextId] = useState(1);
   const [cardWidth, setCardWidth] = useState(0);
   const [chipWidths, setChipWidths] = useState<{[key: number]: number}>({});
   const [flippedCards, setFlippedCards] = useState<{[key: number]: boolean}>({});
@@ -51,19 +61,8 @@ export default function NumberGrid() {
     }));
   };
   
-  // 랜덤 칩 선택 함수
-  const getRandomChip = () => {
-    const randomIndex = Math.floor(Math.random() * techChips.length);
-    return techChips[randomIndex];
-  };
-  
-  // 랜덤 수직 위치 생성 함수 (20%~80%)
-  const getRandomVerticalPosition = () => {
-    return 20 + Math.random() * 60;
-  };
-  
-  // 새로운 칩 인스턴스 생성 함수
-  const createNewChipInstance = (startPosition: number) => {
+  // 새로운 칩 인스턴스 생성 함수 (useCallback으로 메모이제이션)
+  const createNewChipInstance = useCallback((startPosition: number) => {
     const newId = idCounterRef.current++; // useRef를 사용하여 고유 ID 생성
     const newChip: ChipInstance = {
       id: newId,
@@ -72,7 +71,7 @@ export default function NumberGrid() {
       verticalPosition: getRandomVerticalPosition()
     };
     return newChip;
-  };
+  }, []);
   
   // 칩 요소 참조 저장 함수
   const setChipRef = (id: number, element: HTMLDivElement | null) => {
@@ -120,7 +119,7 @@ export default function NumberGrid() {
       setChipInstances(initialChips);
       initializedRef.current = true;
     }
-  }, [cardWidth]);
+  }, [cardWidth, createNewChipInstance]);
   
   // 애니메이션 useEffect - 별도로 분리
   useEffect(() => {
@@ -153,7 +152,7 @@ export default function NumberGrid() {
       console.log('Animation interval cleared');
       clearInterval(moveInterval);
     };
-  }, [cardWidth, chipWidths, initializedRef.current]);
+  }, [cardWidth, chipWidths, createNewChipInstance]);
   
   return (
     <section className="w-full py-10 px-2 md:px-4 lg:px-8">
