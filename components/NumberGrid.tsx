@@ -194,6 +194,31 @@ export default function NumberGrid() {
                   </div>
                 );
               }
+              if (number === 2) {
+                return (
+                  <div 
+                    key={number} 
+                    className="bg-white dark:bg-gray-800 flex flex-col items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10 relative overflow-hidden"
+                  >
+                    {/* 3D Print Text */}
+                    <div className="relative h-full w-full flex items-center justify-center py-6">
+                      <div className="animate-reveal-text text-center">
+                        <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-gray-200 whitespace-pre-line text-center">3D{"\n"}Print</p>
+                      </div>
+                    </div>
+                    
+                    {/* 3D Printer Nozzle (pentagon) */}
+                    <div className="absolute inset-0 pointer-events-none">
+                      <div 
+                        className="w-8 h-8 bg-gray-700 dark:bg-gray-500 animate-nozzle-upward absolute left-1/2 -ml-4" 
+                        style={{
+                          clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)'
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <div 
                   key={number} 
