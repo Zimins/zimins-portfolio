@@ -375,7 +375,10 @@ export default function NumberGrid() {
               <div className="flex items-center justify-center tracking-wider">
                 <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200 mx-1">E</span>
                 <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200 mx-1">N</span>
-                <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200 mx-1">F</span>
+                <div className="flex flex-col items-center justify-center mx-1 h-full" style={{ width: '0.7em' }}>
+                  <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200">F</span>
+                  <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200">T</span>
+                </div>
                 <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200 mx-1">P</span>
               </div>
             </div>
