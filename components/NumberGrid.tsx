@@ -51,10 +51,14 @@ export default function NumberGrid() {
   const [cardWidth, setCardWidth] = useState(0);
   const [chipWidths, setChipWidths] = useState<{[key: number]: number}>({});
   const [flippedCards, setFlippedCards] = useState<{[key: number]: boolean}>({});
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
   const chipRefsMap = useRef<{[key: number]: HTMLDivElement | null}>({});
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const eyesContainerRef = useRef<HTMLDivElement | null>(null);
   const idCounterRef = useRef(1); // ID 카운터를 useRef로 관리하여 리렌더링 시에도 유지
   const initializedRef = useRef(false);
+  const animationFrameRef = useRef<number | null>(null);
   
   // 카드 뒤집기 함수
   const flipCard = (cardNumber: number) => {
@@ -123,6 +127,116 @@ export default function NumberGrid() {
       initializedRef.current = true;
     }
   }, [cardWidth, createNewChipInstance]);
+  
+  // 마우스 움직임 핸들러
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  }, []);
+  
+  // 눈 그리기 함수
+  const drawEyes = useCallback(() => {
+    const canvas = canvasRef.current;
+    const container = eyesContainerRef.current;
+    
+    if (!canvas || !container) return;
+    
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    
+    // 캔버스 크기 설정
+    const rect = container.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    
+    // 캔버스 초기화
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 눈 크기와 위치 계산
+    const eyeRadius = Math.min(canvas.width, canvas.height) * 0.15;
+    const eyeDistance = eyeRadius * 1.8;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const leftEyeX = centerX - eyeDistance / 2;
+    const rightEyeX = centerX + eyeDistance / 2;
+    const eyeY = centerY;
+    
+    // 마우스 위치에 따른 눈동자 위치 계산
+    const maxMove = eyeRadius * 0.4;
+    
+    // 컨테이너 기준으로 마우스 위치 계산
+    const containerRect = container.getBoundingClientRect();
+    const relativeX = mousePosition.x - containerRect.left;
+    const relativeY = mousePosition.y - containerRect.top;
+    
+    // 왼쪽 눈 눈동자 위치 계산
+    const leftDx = relativeX - leftEyeX;
+    const leftDy = relativeY - eyeY;
+    const leftDistance = Math.sqrt(leftDx * leftDx + leftDy * leftDy);
+    const leftRatio = leftDistance === 0 ? 0 : Math.min(maxMove / leftDistance, 1);
+    const leftPupilX = leftEyeX + leftDx * leftRatio;
+    const leftPupilY = eyeY + leftDy * leftRatio;
+    
+    // 오른쪽 눈 눈동자 위치 계산
+    const rightDx = relativeX - rightEyeX;
+    const rightDy = relativeY - eyeY;
+    const rightDistance = Math.sqrt(rightDx * rightDx + rightDy * rightDy);
+    const rightRatio = rightDistance === 0 ? 0 : Math.min(maxMove / rightDistance, 1);
+    const rightPupilX = rightEyeX + rightDx * rightRatio;
+    const rightPupilY = eyeY + rightDy * rightRatio;
+    
+    // 왼쪽 눈 그리기
+    ctx.beginPath();
+    ctx.arc(leftEyeX, eyeY, eyeRadius, 0, Math.PI * 2);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'black';
+    ctx.stroke();
+    
+    // 왼쪽 눈동자 그리기
+    ctx.beginPath();
+    ctx.arc(leftPupilX, leftPupilY, eyeRadius * 0.4, 0, Math.PI * 2);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+    
+    // 오른쪽 눈 그리기
+    ctx.beginPath();
+    ctx.arc(rightEyeX, eyeY, eyeRadius, 0, Math.PI * 2);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'black';
+    ctx.stroke();
+    
+    // 오른쪽 눈동자 그리기
+    ctx.beginPath();
+    ctx.arc(rightPupilX, rightPupilY, eyeRadius * 0.4, 0, Math.PI * 2);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+    
+    // 애니메이션 프레임 요청
+    animationFrameRef.current = requestAnimationFrame(drawEyes);
+  }, [mousePosition]);
+  
+  // 눈 애니메이션 초기화 useEffect
+  useEffect(() => {
+    if (canvasRef.current && eyesContainerRef.current) {
+      // 마우스 이벤트 리스너 등록
+      window.addEventListener('mousemove', handleMouseMove);
+      
+      // 초기 레더링
+      drawEyes();
+    }
+    
+    // 클린업 함수
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [drawEyes, handleMouseMove]);
   
   // 애니메이션 useEffect - 별도로 분리
   useEffect(() => {
@@ -334,11 +448,17 @@ export default function NumberGrid() {
               </div>
             </div>
             
-            {/* 10번 카드 */}
+            {/* 10번 카드 - 눈 애니메이션 */}
             <div 
-              className="bg-white dark:bg-gray-800 flex items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10"
+              className="bg-white dark:bg-gray-800 flex items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10 relative"
+              id="eyes-container"
+              ref={eyesContainerRef}
             >
-              <span className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200">10</span>
+              <canvas 
+                id="eyes-canvas" 
+                className="w-full h-full absolute inset-0 rounded-xl"
+                ref={canvasRef}
+              ></canvas>
             </div>
             
             {/* 12-15번 카드 */}
