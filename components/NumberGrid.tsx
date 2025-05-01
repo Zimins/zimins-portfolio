@@ -254,11 +254,16 @@ export default function NumberGrid() {
               </div>
             </div>
             
-            {/* 6번 카드 */}
+            {/* ENFP 카드 */}
             <div 
               className="bg-white dark:bg-gray-800 flex items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10"
             >
-              <span className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200">6</span>
+              <div className="flex items-center justify-center tracking-wider">
+                <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200 mx-1">E</span>
+                <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200 mx-1">N</span>
+                <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200 mx-1">F</span>
+                <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-gray-200 mx-1">P</span>
+              </div>
             </div>
             
             {/* 가운데 큰 카드 (7번) - 프로필 정보 */}
@@ -374,6 +379,20 @@ export default function NumberGrid() {
                         <div className={`w-2 h-2 ${instance.chip.color.split(' ')[0].replace('text', 'bg')} rounded-full ml-2 animate-pulse`}></div>
                       </div>
                     ))}
+                  </div>
+                );
+              }
+              if (number === 14) {
+                return (
+                  <div 
+                    key={number} 
+                    className="bg-white dark:bg-gray-800 flex flex-col items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10 p-3"
+                  >
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-200">Looking</span>
+                      <span className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-200">for</span>
+                      <span className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-200">next...</span>
+                    </div>
                   </div>
                 );
               }

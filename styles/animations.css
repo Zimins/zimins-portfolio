@@ -198,3 +198,37 @@
   animation: moveNozzleUpward 12s ease-in-out infinite;
   display: inline-block;
 }
+
+.letter-slider-container {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1em;
+  height: 1.2em;
+  overflow: hidden;
+  vertical-align: baseline;
+}
+
+.letter-slider {
+  display: flex;
+  flex-direction: column;
+  animation: slideUpDown 4s ease-in-out infinite;
+  height: 200%;
+}
+
+.letter-slider > span {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes slideUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50%);
+  }
+}
