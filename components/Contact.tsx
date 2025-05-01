@@ -56,7 +56,7 @@ export default function Contact() {
                 </div>
                 <div className="ml-4">
                   <h4 className="text-lg font-medium text-gray-900 dark:text-white">전화번호</h4>
-                  <p className="text-gray-600 dark:text-gray-300 mt-1">+82 10-1234-5678</p>
+                  <p className="text-gray-600 dark:text-gray-300 mt-1">+82 10-4231-8118</p>
                 </div>
               </div>
               
@@ -69,7 +69,7 @@ export default function Contact() {
                 </div>
                 <div className="ml-4">
                   <h4 className="text-lg font-medium text-gray-900 dark:text-white">이메일</h4>
-                  <p className="text-gray-600 dark:text-gray-300 mt-1">zimin@example.com</p>
+                  <p className="text-gray-600 dark:text-gray-300 mt-1">cozi.hobby@gmail.com</p>
                 </div>
               </div>
               
@@ -82,7 +82,7 @@ export default function Contact() {
                 </div>
                 <div className="ml-4">
                   <h4 className="text-lg font-medium text-gray-900 dark:text-white">위치</h4>
-                  <p className="text-gray-600 dark:text-gray-300 mt-1">서울특별시, 대한민국</p>
+                  <p className="text-gray-600 dark:text-gray-300 mt-1">용인시 수지구청</p>
                 </div>
               </div>
             </div>
