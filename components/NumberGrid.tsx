@@ -183,7 +183,7 @@ export default function NumberGrid() {
                     >
                       {/* 카드 앞면 */}
                       <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl [backface-visibility:hidden]">
-                        <span className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200">{number}</span>
+                        <span className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">반가워요!</span>
                       </div>
                       
                       {/* 카드 뒷면 */}
