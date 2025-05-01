@@ -219,12 +219,12 @@ export default function NumberGrid() {
               <div className="flex flex-col items-center text-center">
                 <div className="flex items-center mb-2">
                   <span className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200">Board Gamer</span>
-                  <span className="text-2xl md:text-3xl ml-2">🎲</span>
+                  <span className="text-2xl md:text-3xl ml-2 animate-spin">🎲</span>
                 </div>
                 <div className="w-16 h-px bg-gray-300 dark:bg-gray-600 my-2"></div>
                 <div className="flex items-center mt-2">
                   <span className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-200">Digital Gamer</span>
-                  <span className="text-2xl md:text-3xl ml-2">🎮</span>
+                  <span className="text-2xl md:text-3xl ml-2 animate-shake">🎮</span>
                 </div>
               </div>
             </div>
@@ -269,14 +269,12 @@ export default function NumberGrid() {
             >
               <div className="flex items-center">
                 <span 
-                  className="text-7xl md:text-8xl lg:text-9xl font-bold text-orange-500 dark:text-orange-400"
-                  style={{ transform: 'rotate(-5deg)' }}
+                  className="text-7xl md:text-8xl lg:text-9xl font-bold text-orange-500 dark:text-orange-400 animate-rotate-left"
                 >
                   B
                 </span>
                 <span 
-                  className="text-7xl md:text-8xl lg:text-9xl font-bold text-orange-500 dark:text-orange-400"
-                  style={{ transform: 'rotate(5deg)' }}
+                  className="text-7xl md:text-8xl lg:text-9xl font-bold text-orange-500 dark:text-orange-400 animate-rotate-right"
                 >
                   1
                 </span>
