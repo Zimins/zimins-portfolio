@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState, useRef, useCallback } from 'react';
+import '../styles/animations.css';
 
 // 칩 데이터 타입 정의
 type TechChip = {
@@ -42,6 +43,8 @@ const getRandomChip = () => {
 const getRandomVerticalPosition = () => {
   return 20 + Math.random() * 60;
 };
+
+
 
 export default function NumberGrid() {
   const [chipInstances, setChipInstances] = useState<ChipInstance[]>([]);
@@ -205,7 +208,7 @@ export default function NumberGrid() {
             <div 
               className="bg-white dark:bg-gray-800 flex flex-col items-center justify-center rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:z-10 p-3"
             >
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 text-center">Product Engineer</h3>
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold animate-gradient-text text-center">Product Engineer</h3>
               <p className="text-sm md:text-base text-purple-600 dark:text-purple-400 mt-2 text-center font-medium">all in one 제품 제작</p>
             </div>
             
