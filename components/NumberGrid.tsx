@@ -389,7 +389,7 @@ export default function NumberGrid() {
               style={{ gridRow: "span 2" }}
             >
               <div className="flex flex-col items-start">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-2">
                   프로덕트 엔지니어
                 </h2>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
